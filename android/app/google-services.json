@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "967466229097",
+    "firebase_url": "https://axios-2fdf2.firebaseio.com",
+    "project_id": "axios-2fdf2",
+    "storage_bucket": "axios-2fdf2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967466229097:android:f2f307fae724ae598af1f8",
+        "android_client_info": {
+          "package_name": "com.axios"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967466229097-g9dkueps2pcjubhgsrsuakhne4smikqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSrk2L2p73pxl_QkjIJK-Us6m3FtzXav0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967466229097-g9dkueps2pcjubhgsrsuakhne4smikqq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
