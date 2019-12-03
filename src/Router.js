@@ -55,6 +55,7 @@ const AppNavigator = createStackNavigator(
         headerTitle: 'Öğrenci Güncelle',
       },
     },
+    
   },
   {
     headerLayoutPreset: 'center',
