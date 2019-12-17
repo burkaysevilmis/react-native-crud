@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   View,
   Text,
@@ -14,9 +14,9 @@ import List from '../src/screen/List';
 import Insert from '../src/screen/Insert';
 import Update from '../src/screen/Update';
 import InsertSql from '../src/screen/InsertSql';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-const { width, height } = Dimensions.get('window');
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+const {width, height} = Dimensions.get('window');
 
 export default class Router extends Component {
   render() {
@@ -46,7 +46,7 @@ const AppNavigator = createStackNavigator(
     InsertSql: {
       screen: InsertSql,
       navigationOptions: {
-        headerTitle: 'Öğrenci Ekle Sql',
+        headerTitle: 'Sqlite DB Insert',
       },
     },
     Update: {
@@ -55,7 +55,6 @@ const AppNavigator = createStackNavigator(
         headerTitle: 'Öğrenci Güncelle',
       },
     },
-    
   },
   {
     headerLayoutPreset: 'center',
