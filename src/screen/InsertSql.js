@@ -22,45 +22,62 @@ export default class Insert extends Component {
       ad: '',
       sifre: '',
       idd: 78,
-      adko: 100
-    }
+      adko: 100,
+    };
 
     service.init();
   }
 
-
   guidGenerator() {
-    var S4 = function () {
+    var S4 = function() {
       return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     };
-    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+    return (
+      S4() +
+      S4() +
+      '-' +
+      S4() +
+      '-' +
+      S4() +
+      '-' +
+      S4() +
+      '-' +
+      S4() +
+      S4() +
+      S4()
+    );
   }
 
-
   kontrol() {
-    if (this.state.ad != "" && this.state.sifre != "") {
-      service.createTable("OfflineData", [{
-        name: 'id',
-        dataType: 'integer',
-        isNotNull: true,
-        options: 'PRIMARY KEY AUTOINCREMENT'
-      }, {
-        name: 'query',
-        dataType: 'text'
-      }])
-      service.insert("OfflineData", {
-        query: `INSERT INTO Visit (id,ad) VALUES (${this.state.adko+'-'+this.guidGenerator()+'-'+this.state.idd},"${this.state.ad}")`,
-      })
-      var result = service.select("OfflineData")
+    if (this.state.ad != '' && this.state.sifre != '') {
+      service.createTable('OfflineData', [
+        {
+          name: 'id',
+          dataType: 'integer',
+          isNotNull: true,
+          options: 'PRIMARY KEY AUTOINCREMENT',
+        },
+        {
+          name: 'query',
+          dataType: 'text',
+        },
+      ]);
+      service.insert('OfflineData', {
+        query: `INSERT INTO Visit (id,ad) VALUES (${this.state.adko +
+          '-' +
+          this.guidGenerator() +
+          '-' +
+          this.state.idd},"${this.state.ad}")`,
+      });
+      var result = service.select('OfflineData');
       console.log(result);
       alert('Kayıt Başarılı.');
       this.setState({
         ad: '',
         sifre: '',
-      })
-    }
-    else {
-      alert('Boş Geçilemez!')
+      });
+    } else {
+      alert('Boş Geçilemez!');
       return false;
     }
   }
