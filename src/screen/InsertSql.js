@@ -7,9 +7,10 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
+  Platform,
 } from 'react-native';
-import axios from 'axios';
 import Data from '../components/Data';
+import NetInfo from '@react-native-community/netinfo';
 var service = new Data();
 const {width, height} = Dimensions.get('window');
 
@@ -27,7 +28,6 @@ export default class Insert extends Component {
 
     service.init();
   }
-
   guidGenerator() {
     var S4 = function() {
       return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -81,6 +81,7 @@ export default class Insert extends Component {
       return false;
     }
   }
+
   render() {
     return (
       <View style={styles.container}>
