@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   View,
   Text,
@@ -9,16 +9,13 @@ import {
   Alert,
 } from 'react-native';
 import axios from 'axios';
-import ImagePicker from 'react-native-image-picker';
 import Data from '../components/Data';
-import PushNotification from "react-native-push-notification";
-var service = new Data()
-const { width, height } = Dimensions.get('window');
+var service = new Data();
+const {width, height} = Dimensions.get('window');
 
 export default class Insert extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       records: [],
@@ -28,7 +25,7 @@ export default class Insert extends Component {
       adko: 100
     }
 
-    service.init()
+    service.init();
   }
 
 
@@ -56,7 +53,7 @@ export default class Insert extends Component {
       })
       var result = service.select("OfflineData")
       console.log(result);
-      alert('Kayıt Başarılı.')
+      alert('Kayıt Başarılı.');
       this.setState({
         ad: '',
         sifre: '',
@@ -66,7 +63,6 @@ export default class Insert extends Component {
       alert('Boş Geçilemez!')
       return false;
     }
-
   }
   render() {
     return (
@@ -79,20 +75,21 @@ export default class Insert extends Component {
           <Text style={styles.ad}>Ad</Text>
           <TextInput
             style={styles.txtAd}
-            onChangeText={text => this.setState({ ad: text })}
+            onChangeText={text => this.setState({ad: text})}
             value={this.state.ad}
           />
           <Text style={styles.soyad}>Şifre</Text>
           <TextInput
+            secureTextEntry={true}
             style={styles.txtSoyad}
-            onChangeText={text => this.setState({ sifre: text })}
+            onChangeText={text => this.setState({sifre: text})}
             value={this.state.sifre}
           />
           <TouchableOpacity
             onPress={() => this.kontrol()}
             style={styles.btnBox}>
             <View style={styles.btnGonder}>
-              <Text style={{ color: 'white', fontSize: 15 }}>Gönder</Text>
+              <Text style={{color: 'white', fontSize: 15}}>Gönder</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -107,21 +104,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  ad: { fontSize: 15, color: 'white' },
+  ad: {fontSize: 15, color: 'white'},
   txtAd: {
     color: 'white',
     borderColor: 'white',
     borderWidth: 1,
     height: height * 0.06,
   },
-  soyad: { fontSize: 15, color: 'white' },
+  soyad: {fontSize: 15, color: 'white'},
   txtSoyad: {
     color: 'white',
     borderColor: 'white',
     borderWidth: 1,
     height: height * 0.06,
   },
-  sifre: { fontSize: 15, color: 'white' },
+  sifre: {fontSize: 15, color: 'white'},
   txtSifre: {
     color: 'white',
     borderColor: 'white',
@@ -147,6 +144,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+<<<<<<< HEAD
 PushNotification.configure({
   // (optional) Called when Token is generated (iOS and Android)
   onRegister: function (token) {
@@ -184,3 +182,5 @@ PushNotification.configure({
    */
   requestPermissions: true
 });
+=======
+>>>>>>> f2c79a072d8ecc1b9bc99cc3adf910dd0f8fed0b
