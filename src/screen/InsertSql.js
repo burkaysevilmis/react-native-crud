@@ -17,57 +17,49 @@ const { width, height } = Dimensions.get('window');
 
 export default class Insert extends Component {
 
-
-  
-  state = {
-    ad: '',
-    sifre: '',
-  };
   constructor(props) {
     super(props)
 
     this.state = {
-      records: []
+      records: [],
+      ad: '',
+      sifre: '',
+      idd: 78,
+      adko: 100
     }
 
     service.init()
   }
 
 
-componentDidMount(){
-  PushNotification.localNotification({
-    title: "My Notification Title", // (optional)
-    message: "My Notification Message", // (required)
-});
-}
-
+  guidGenerator() {
+    var S4 = function () {
+      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    };
+    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+  }
 
 
   kontrol() {
-    debugger;
     if (this.state.ad != "" && this.state.sifre != "") {
-      service.createTable("aloha", [{
+      service.createTable("OfflineData", [{
         name: 'id',
         dataType: 'integer',
         isNotNull: true,
         options: 'PRIMARY KEY AUTOINCREMENT'
       }, {
-        name: 'name',
-        dataType: 'text'
-      }, {
-        name: 'sifre',
+        name: 'query',
         dataType: 'text'
       }])
-      service.insert("aloha", {
-        name: this.state.ad,
-        sifre: this.state.sifre,
+      service.insert("OfflineData", {
+        query: `INSERT INTO Visit (id,ad) VALUES (${this.state.adko+'-'+this.guidGenerator()+'-'+this.state.idd},"${this.state.ad}")`,
       })
-      var result = service.select("aloha")
+      var result = service.select("OfflineData")
       console.log(result);
       alert('Kayıt Başarılı.')
       this.setState({
-        ad:'',
-        sifre:'',
+        ad: '',
+        sifre: '',
       })
     }
     else {
@@ -157,12 +149,12 @@ const styles = StyleSheet.create({
 });
 PushNotification.configure({
   // (optional) Called when Token is generated (iOS and Android)
-  onRegister: function(token) {
+  onRegister: function (token) {
     console.log("TOKEN:", token);
   },
 
   // (required) Called when a remote or local notification is opened or received
-  onNotification: function(notification) {
+  onNotification: function (notification) {
     console.log("NOTIFICATION:", notification);
 
     // process the notification
