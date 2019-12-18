@@ -14,6 +14,7 @@ import List from '../src/screen/List';
 import Insert from '../src/screen/Insert';
 import Update from '../src/screen/Update';
 import InsertSql from '../src/screen/InsertSql';
+import WebViewScreen from '../src/screen/WebViewScreen';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 const {width, height} = Dimensions.get('window');
@@ -55,10 +56,16 @@ const AppNavigator = createStackNavigator(
         headerTitle: 'Öğrenci Güncelle',
       },
     },
+    WebViewScreen: {
+      screen: WebViewScreen,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
   },
   {
     headerLayoutPreset: 'center',
-    initialRouteName: 'InsertSql',
+    initialRouteName: 'Login',
   },
 );
 const AppContainer = createAppContainer(AppNavigator);

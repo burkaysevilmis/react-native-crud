@@ -9,10 +9,7 @@ import {
   TextInput,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
-import {AsyncStorage} from 'react-native';
-import firebase from 'react-native-firebase';
 const {width, height} = Dimensions.get('window');
 
 export default class Login extends Component {
@@ -20,53 +17,11 @@ export default class Login extends Component {
     name: '',
     pass: '',
   };
-  async getToken() {
-    let fcmToken = await AsyncStorage.getItem('fcmToken');
-    console.log('before fcmToken: ', fcmToken);
-    if (!fcmToken) {
-      fcmToken = await firebase.messaging().getToken();
-      if (fcmToken) {
-        console.log('after fcmToken: ', fcmToken);
-        await AsyncStorage.setItem('fcmToken', fcmToken);
-      }
-    }
-  }
-
-  async requestPermission() {
-    firebase
-      .messaging()
-      .requestPermission()
-      .then(() => {
-        this.getToken();
-      })
-      .catch(error => {
-        console.log('permission rejected');
-      });
-  }
-
-  async checkPermission() {
-    firebase
-      .messaging()
-      .hasPermission()
-      .then(enabled => {
-        if (enabled) {
-          console.log('Permission granted');
-          this.getToken();
-        } else {
-          console.log('Request Permission');
-          this.requestPermission();
-        }
-      });
-  }
-
-  async componentDidMount() {
-    this.checkPermission();
-  }
   Giris(isim, sifre) {
     let sayac = 0;
     if (isim != '' && sifre != '') {
       axios
-        .get('http://www.burkaysevilmis.com/api/Test/GetUser')
+        .get('http://www.burkaysevilmis.com/api/Test/GetUser/')
         .then(response => {
           response.data.map(veri => {
             if (veri.ad == isim && veri.sifre == sifre) {
@@ -116,6 +71,7 @@ export default class Login extends Component {
             />
             <TextInput
               placeholder="Password"
+              secureTextEntry={true}
               placeholderTextColor="#BBACAC"
               style={styles.paswordText}
               onChangeText={value => this.setState({pass: value})}
@@ -156,7 +112,7 @@ const styles = StyleSheet.create({
   },
   nameText: {
     width: width * 0.79,
-    height: height * 0.055,
+    height: height * 0.08,
     flex: 1,
     borderBottomWidth: 1,
     borderBottomColor: '#707070',
@@ -166,7 +122,7 @@ const styles = StyleSheet.create({
   },
   paswordText: {
     width: width * 0.79,
-    height: height * 0.055,
+    height: height * 0.08,
     flex: 1,
     borderBottomWidth: 1,
     borderBottomColor: '#707070',
