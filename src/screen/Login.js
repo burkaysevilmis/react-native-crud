@@ -1,3 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-alert */
 import React, {Component} from 'react';
 import {
   View,
@@ -7,6 +10,7 @@ import {
   Dimensions,
   TouchableOpacity,
   TextInput,
+  SafeAreaView,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import axios from 'axios';
@@ -44,47 +48,51 @@ export default class Login extends Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
-      <LinearGradient colors={['#000000', '#3B4371']} style={styles.container}>
-        <Image
-          style={styles.imageLogo}
-          source={require('../imgMessage/man2.png')}
-        />
-        <View style={styles.loginBox}>
-          <View style={styles.searchSection}>
-            <Image
-              style={{paddingRight: 25}}
-              resizeMode="contain"
-              source={require('../imgMessage/plane.png')}
-            />
-            <TextInput
-              placeholder="Username"
-              placeholderTextColor="#BBACAC"
-              style={styles.nameText}
-              onChangeText={value => this.setState({name: value})}
-            />
+      <SafeAreaView style={{flex: 1, backgroundColor: '#E33270'}}>
+        <LinearGradient
+          colors={['#000000', '#3B4371']}
+          style={styles.container}>
+          <Image
+            style={styles.imageLogo}
+            source={require('../imgMessage/man2.png')}
+          />
+          <View style={styles.loginBox}>
+            <View style={styles.searchSection}>
+              <Image
+                style={{paddingRight: 25}}
+                resizeMode="contain"
+                source={require('../imgMessage/plane.png')}
+              />
+              <TextInput
+                placeholder="Username"
+                placeholderTextColor="#BBACAC"
+                style={styles.nameText}
+                onChangeText={value => this.setState({name: value})}
+              />
+            </View>
+            <View style={styles.searchSection}>
+              <Image
+                style={{paddingRight: 25}}
+                resizeMode="contain"
+                source={require('../imgMessage/lock.png')}
+              />
+              <TextInput
+                placeholder="Password"
+                secureTextEntry={true}
+                placeholderTextColor="#BBACAC"
+                style={styles.paswordText}
+                onChangeText={value => this.setState({pass: value})}
+              />
+            </View>
           </View>
-          <View style={styles.searchSection}>
-            <Image
-              style={{paddingRight: 25}}
-              resizeMode="contain"
-              source={require('../imgMessage/lock.png')}
-            />
-            <TextInput
-              placeholder="Password"
-              secureTextEntry={true}
-              placeholderTextColor="#BBACAC"
-              style={styles.paswordText}
-              onChangeText={value => this.setState({pass: value})}
-            />
-          </View>
-        </View>
-        <TouchableOpacity
-          onPress={() => this.Giris(this.state.name, this.state.pass)}
-          style={styles.girisBtn}>
-          <Text style={styles.logInText}>LOG IN</Text>
-        </TouchableOpacity>
-        <Text style={styles.forgetPass}>Forget password?</Text>
-      </LinearGradient>
+          <TouchableOpacity
+            onPress={() => this.Giris(this.state.name, this.state.pass)}
+            style={styles.girisBtn}>
+            <Text style={styles.logInText}>LOG IN</Text>
+          </TouchableOpacity>
+          <Text style={styles.forgetPass}>Forget password?</Text>
+        </LinearGradient>
+      </SafeAreaView>
     );
   }
 }
