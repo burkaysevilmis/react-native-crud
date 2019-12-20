@@ -35,7 +35,7 @@ const AppNavigator = createStackNavigator(
     List: {
       screen: List,
       navigationOptions: {
-        headerLeft: null,
+        headerTitle: 'List',
       },
     },
     Insert: {

@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 const {width, height} = Dimensions.get('window');
 import Lists from '../components/Lists';
 import axios from 'axios';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 const getuserlocal = 'http://localhost:35091/api/Test/GetUser';
 const url = 'http://www.burkaysevilmis.com/api/Test/GetUser';
 export default class List extends Component {
@@ -26,6 +27,14 @@ export default class List extends Component {
           onPress={() => navigation.navigate('Insert')}
           style={{marginRight: 20}}
           name="plus"
+          size={22}
+        />
+      ),
+      headerLeft: () => (
+        <Icon
+          onPress={() => navigation.navigate('Login')}
+          name="sign-out-alt"
+          style={{marginLeft: 20}}
           size={22}
         />
       ),

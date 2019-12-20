@@ -14,25 +14,29 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import axios from 'axios';
+import deviceStorage from '../services/deviceStorage';
 const {width, height} = Dimensions.get('window');
 
 export default class Login extends Component {
+  componentDidMount() {
+    if (deviceStorage.getItem('token') != null) {
+      this.props.navigation.push('List');
+    }
+  }
   state = {
     name: '',
     pass: '',
   };
   Giris(isim, sifre) {
-    let sayac = 0;
     if (isim != '' && sifre != '') {
       axios
-        .get('http://www.burkaysevilmis.com/api/Test/GetUser/')
+        .post('http://localhost:3000/authenticate/', {
+          username: isim,
+          password: sifre,
+        })
         .then(response => {
-          response.data.map(veri => {
-            if (veri.ad == isim && veri.sifre == sifre) {
-              sayac++;
-            }
-          });
-          if (sayac > 0) {
+          if (response.data.status == true) {
+            deviceStorage.saveItem('token', response.data.token);
             this.props.navigation.push('List');
           } else {
             alert('Kullanıcı Adı veya Şifre Yanlış!');
