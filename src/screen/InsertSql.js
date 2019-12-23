@@ -26,6 +26,12 @@ export default class Insert extends Component {
       adko: 100,
     };
 
+    NetInfo.fetch().then(con => {
+      console.log('Connection type', con.type);
+      console.log('Is connected?', con.isConnected);
+      console.log('Details', con.details);
+    });
+
     service.init();
   }
   guidGenerator() {
@@ -64,9 +70,7 @@ export default class Insert extends Component {
       ]);
       service.insert('OfflineData', {
         query: `INSERT INTO Visit (id,ad) VALUES (${this.state.adko +
-          '-' +
-          this.guidGenerator() +
-          '-' +
+          '.' +
           this.state.idd},"${this.state.ad}")`,
       });
       var result = service.select('OfflineData');

@@ -65,7 +65,7 @@ const AppNavigator = createStackNavigator(
   },
   {
     headerLayoutPreset: 'center',
-    initialRouteName: 'Login',
+    initialRouteName: 'InsertSql',
   },
 );
 const AppContainer = createAppContainer(AppNavigator);

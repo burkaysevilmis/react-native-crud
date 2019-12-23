@@ -9,12 +9,13 @@ const deviceStorage = {
     }
   },
 
-  async getItem(key) {
-    await AsyncStorage.getItem(key).then(res => console.log(res));
+  async getStorageItem(key) {
+    var value = await AsyncStorage.getItem(key);
+    return value;
   },
 
   async removeItem(key) {
-    await AsyncStorage.getItem(key).then(res => console.log(res));
+    await AsyncStorage.removeItem(key).then(res => console.log(res));
   },
 };
 

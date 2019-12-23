@@ -18,6 +18,7 @@ import axios from 'axios';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 const getuserlocal = 'http://localhost:35091/api/Test/GetUser';
 const url = 'http://www.burkaysevilmis.com/api/Test/GetUser';
+import deviceStorage from '../services/deviceStorage';
 export default class List extends Component {
   static navigationOptions = ({navigation}) => {
     return {
@@ -32,7 +33,10 @@ export default class List extends Component {
       ),
       headerLeft: () => (
         <Icon
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => [
+            (deviceStorage.getStorageItem('token')._55 = null),
+            navigation.navigate('Login'),
+          ]}
           name="sign-out-alt"
           style={{marginLeft: 20}}
           size={22}
@@ -40,6 +44,7 @@ export default class List extends Component {
       ),
     };
   };
+
   state = {
     veri: [],
     animating: true,
@@ -74,6 +79,8 @@ export default class List extends Component {
 
   render() {
     var liste = [];
+    var token = deviceStorage.getStorageItem('token');
+    console.log(token);
     for (let index = 0; index < this.state.veri.length; index++) {
       liste[index] = (
         <Lists

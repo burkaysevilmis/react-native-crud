@@ -19,8 +19,12 @@ const {width, height} = Dimensions.get('window');
 
 export default class Login extends Component {
   componentDidMount() {
-    if (deviceStorage.getItem('token') != null) {
+    var x = deviceStorage.getStorageItem('token');
+    console.log(x._55);
+    if (x._55 !== null) {
       this.props.navigation.push('List');
+    } else {
+      false;
     }
   }
   state = {
