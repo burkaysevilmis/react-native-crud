@@ -19,13 +19,12 @@ const {width, height} = Dimensions.get('window');
 
 export default class Login extends Component {
   componentDidMount() {
-    var x = deviceStorage.getStorageItem('token');
-    console.log(x._55);
-    if (x._55 !== null) {
-      this.props.navigation.push('List');
-    } else {
-      false;
-    }
+    deviceStorage.getStorageItem('token').then(function(res) {
+      console.log(res);
+      if (res != null) {
+        this.props.navigation.push('List');
+      }
+    });
   }
   state = {
     name: '',
@@ -34,7 +33,7 @@ export default class Login extends Component {
   Giris(isim, sifre) {
     if (isim != '' && sifre != '') {
       axios
-        .post('http://localhost:3000/authenticate/', {
+        .post('http://192.168.10.141:3000/authenticate/', {
           username: isim,
           password: sifre,
         })
@@ -54,7 +53,6 @@ export default class Login extends Component {
     }
   }
   render() {
-    const {navigate} = this.props.navigation;
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: '#E33270'}}>
         <LinearGradient

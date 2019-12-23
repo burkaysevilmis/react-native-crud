@@ -34,7 +34,7 @@ export default class List extends Component {
       headerLeft: () => (
         <Icon
           onPress={() => [
-            (deviceStorage.getStorageItem('token')._55 = null),
+            deviceStorage.removeItem('token'),
             navigation.navigate('Login'),
           ]}
           name="sign-out-alt"
@@ -75,12 +75,11 @@ export default class List extends Component {
 
   componentDidMount() {
     this.VeriGetir();
+    deviceStorage.getStorageItem('token').then(res => console.log(res));
   }
 
   render() {
     var liste = [];
-    var token = deviceStorage.getStorageItem('token');
-    console.log(token);
     for (let index = 0; index < this.state.veri.length; index++) {
       liste[index] = (
         <Lists
