@@ -18,6 +18,7 @@ import deviceStorage from '../services/deviceStorage';
 const {width, height} = Dimensions.get('window');
 
 export default class Login extends Component {
+  //BURKAY
   componentDidMount() {
     deviceStorage.getStorageItem('token').then(function(res) {
       console.log(res);
