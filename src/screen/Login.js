@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   TextInput,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import axios from 'axios';
@@ -18,18 +19,24 @@ import deviceStorage from '../services/deviceStorage';
 const {width, height} = Dimensions.get('window');
 
 export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      pass: '',
+      isHaveToken: true,
+    };
+  }
   componentDidMount() {
-    deviceStorage.getStorageItem('token').then(function(res) {
+    deviceStorage.getStorageItem('token').then(res => {
       console.log(res);
       if (res != null) {
         this.props.navigation.push('List');
+        this.setState({isHaveToken: false});
       }
     });
   }
-  state = {
-    name: '',
-    pass: '',
-  };
+
   Giris(isim, sifre) {
     if (isim != '' && sifre != '') {
       axios
@@ -55,6 +62,11 @@ export default class Login extends Component {
   render() {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: '#E33270'}}>
+        <ActivityIndicator
+          animating={this.state.isHaveToken}
+          color="#bc2b78"
+          size="large"
+        />
         <LinearGradient
           colors={['#000000', '#3B4371']}
           style={styles.container}>
