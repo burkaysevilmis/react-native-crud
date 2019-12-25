@@ -24,7 +24,7 @@ export default class Login extends Component {
     this.state = {
       name: '',
       pass: '',
-      isHaveToken: true,
+      isHaveToken: false,
     };
   }
   componentDidMount() {
@@ -32,7 +32,7 @@ export default class Login extends Component {
       console.log(res);
       if (res != null) {
         this.props.navigation.push('List');
-        this.setState({isHaveToken: false});
+        this.setState({isHaveToken: true});
       }
     });
   }
@@ -62,11 +62,6 @@ export default class Login extends Component {
   render() {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: '#E33270'}}>
-        <ActivityIndicator
-          animating={this.state.isHaveToken}
-          color="#bc2b78"
-          size="large"
-        />
         <LinearGradient
           colors={['#000000', '#3B4371']}
           style={styles.container}>
