@@ -1,14 +1,5 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
-
+import {Dimensions} from 'react-native';
 import Login from '../src/screen/Login';
 import List from '../src/screen/List';
 import Insert from '../src/screen/Insert';
