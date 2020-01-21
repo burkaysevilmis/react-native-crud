@@ -89,7 +89,7 @@ export default class Insert extends Component {
   }
 
   componentDidMount() {
-    Geolocation.getCurrentPosition(info => console.log(info));
+    Geolocation.getCurrentPosition(info => console.log(info.coords));
   }
 
   render() {
