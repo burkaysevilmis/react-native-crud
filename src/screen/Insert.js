@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import ImagePicker from 'react-native-image-picker';
+import Geolocation from '@react-native-community/geolocation';
 const {width, height} = Dimensions.get('window');
 
 export default class Insert extends Component {
@@ -85,6 +86,10 @@ export default class Insert extends Component {
     } else {
       alert('Başarısız');
     }
+  }
+
+  componentDidMount() {
+    Geolocation.getCurrentPosition(info => console.log(info));
   }
 
   render() {
