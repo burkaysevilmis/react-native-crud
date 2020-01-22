@@ -19,6 +19,8 @@ export default class Insert extends Component {
     soyad: '',
     sifre: '',
     photo: '',
+    latitude: '',
+    longitude: '',
   };
 
   openImagePicker() {
@@ -88,8 +90,28 @@ export default class Insert extends Component {
     }
   }
 
-  componentDidMount() {
-    Geolocation.getCurrentPosition(info => console.log(info.coords));
+  location() {
+    Geolocation.getCurrentPosition(info => {
+      console.log(info);
+      this.setState({
+        latitude: info.coords.latitude,
+        longitude: info.coords.longitude,
+      });
+      axios
+        .get(
+          'http://test.promotor.online:81/rest/prmt/prmtall/geo/' +
+            this.state.latitude +
+            '/' +
+            this.state.longitude,
+        )
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      console.log(this.state.latitude + ' ' + this.state.longitude);
+    });
   }
 
   render() {
@@ -130,6 +152,14 @@ export default class Insert extends Component {
             style={styles.btnBox}>
             <View style={styles.btnGonder}>
               <Text style={{color: 'white', fontSize: 15}}>Gönder</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => this.location()}
+            style={styles.btnBox}>
+            <View style={styles.btnGonder}>
+              <Text style={{color: 'white', fontSize: 15}}>Location</Text>
             </View>
           </TouchableOpacity>
         </View>
